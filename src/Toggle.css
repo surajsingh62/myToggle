@@ -1,0 +1,113 @@
+:root {
+    --color-background--one: #e75874;
+    --color-background--two: #be1558;
+    --color-circle--one: #fbcbc9;
+    --color-circle--two: #322514;
+    --font-size: 1em;
+    --width-toggle: 2em;
+} 
+
+.checkBox {
+    display: inline-flex;
+    /* border: 1px solid blue; */
+  
+    /* margin-left: 3em change */
+}
+/* color scheme */
+.color-scheme-one {
+    --color-background--one: #F7E2E2;
+    --color-background--two: #1A132F;
+    --color-circle--one: #5B7DB1;
+    --color-circle--two: #61A4BC;
+}
+.color-scheme-two {
+    --color-background--one: #FFDAAF;
+    --color-background--two: #FFCC8F;
+    --color-circle--one: #A760FF;
+    --color-circle--two: #CA82FF;
+}
+.color-scheme-three {
+    --color-background--one: #90E0EF;
+    --color-background--two: #CAF0F8;
+    --color-circle--one: #03045E;
+    --color-circle--two: #00B4D8;
+}
+/* size  */
+.size-small {
+    --width-toggle: 1.5em;
+}
+
+.size-medium {
+    --width-toggle: 2em;
+}
+
+.size-large {
+    --width-toggle: 3em;
+}
+/* color mode */
+.three-color-mode {
+    --color-background--two: var(--color-background--one);
+}
+
+.two-color-mode {
+    --color-background--two: var(--color-circle--one);
+    --color-background--one: var(--color-circle--two);
+}
+/* remove the checkbox out of screen */
+input[type="checkbox"].toggle {
+    opacity: 0;
+    position: absolute;
+    left: -900rem;
+    top: -900rem;
+}
+
+.labelForm{
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+    font-size: var(--font-size);
+}
+
+.labelForm::before {
+    content: ""; 
+    width: 0.4em;
+    height: 0.4em;
+    border-radius: 1em;
+    background-color: var(--color-circle--one);
+    padding: 0.5em;
+    /* display: inline-block; */
+    position: absolute;
+    right: calc(var(--width-toggle) - 0.9em);
+    z-index: 1;
+    transition: right 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+
+.labelForm::after {
+    content: "";
+    width: var(--width-toggle);
+    height: 1em;
+    border-radius: 1em;
+    background-color: var(--color-background--one);
+    padding: 0.3em;
+    position: relative;
+    left: 0.2em;
+    margin-right: 0.20em;
+    transition: background-color 200ms ease-in-out;
+}
+
+input[type="checkbox"]:checked + label::before {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    content: "\2713";
+    color: var(--color-circle--one);
+    right: 0.1em;
+    background-color: var(--color-circle--two);
+}
+
+
+input[type="checkbox"]:checked + label::after {
+    background-color: var(--color-background--two);
+}

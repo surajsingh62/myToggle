@@ -1,0 +1,20 @@
+rescript = 1
+g_finger := /Users/surajsingh/Documents/reasonmltut/my-toggle/node_modules/@rescript/react/lib/ocaml/install.stamp
+rule astj
+  command = /Users/surajsingh/Documents/reasonmltut/my-toggle/node_modules/rescript/darwin/bsc.exe  -bs-v 9.1.4 -bs-jsx 3  -absname -bs-ast -o $out $i
+o src/App.ast : astj ../../src/App.res
+rule deps
+  command = /Users/surajsingh/Documents/reasonmltut/my-toggle/node_modules/rescript/darwin/bsb_helper.exe -hash 5934d17aa0b2d4f11734b5451e54ee0b $in
+  restat = 1
+o src/App.d : deps src/App.ast
+rule mij
+  command = /Users/surajsingh/Documents/reasonmltut/my-toggle/node_modules/rescript/darwin/bsc.exe -I src/components -I src -I /Users/surajsingh/Documents/reasonmltut/my-toggle/node_modules/@rescript/react/lib/ocaml   -bs-package-name your-project-name -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/App.cmj src/App.cmi ../../src/App.bs.js : mij src/App.ast
+o src/components/Toggle.ast : astj ../../src/components/Toggle.res
+o src/components/Toggle.d : deps src/components/Toggle.ast
+o src/components/Toggle.cmj src/components/Toggle.cmi ../../src/components/Toggle.bs.js : mij src/components/Toggle.ast
+o src/components/ToggleFinal.ast : astj ../../src/components/ToggleFinal.res
+o src/components/ToggleFinal.d : deps src/components/ToggleFinal.ast
+o src/components/ToggleFinal.cmj src/components/ToggleFinal.cmi ../../src/components/ToggleFinal.bs.js : mij src/components/ToggleFinal.ast
