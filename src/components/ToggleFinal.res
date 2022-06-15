@@ -1,4 +1,4 @@
-%%raw("import '../Toggle.css'")
+%%raw("import './Toggle.css'")
 
 
 @react.component
